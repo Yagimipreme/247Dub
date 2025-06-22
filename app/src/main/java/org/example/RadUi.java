@@ -5,12 +5,13 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
 
 public class RadUi {
 
     public static void main(String[] args) {
         String[] options = {"c-RED","MABU", "http://popupplayer.radio.net/popupplayer/index.html?station=schizoiddubtechno&tenant=www.radio.de&authId=7929a0dd-5120-4bc7-9785-11f9929e35d6"};
-        Radios radios = new Radios();
+        CompletableFuture<Radios> radios = CompletableFuture.supplyAsync();
         
         // Hintergrundbild laden
         ImageIcon backgroundImage = new ImageIcon("src/test/resources/giphy.gif");
@@ -67,7 +68,7 @@ public class RadUi {
         JButton btnPlay = new JButton(playIcon);
         JButton exitBtn = new JButton("Exit");
         btnPlay.setPreferredSize(new Dimension(40, 40));
-
+        //Radios radios = new Radios();
         JButton nextRad = new JButton("Next");
         nextRad.setPreferredSize(new Dimension(80, 40));
         if(radios.isPlaying) {
@@ -134,5 +135,7 @@ public class RadUi {
 
         // Frame sichtbar machen
         frame.setVisible(true);
+
+        
     }
 }

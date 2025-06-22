@@ -44,12 +44,12 @@ application {
 }
 
 task runTestApp(type: JavaExec) {
-    classpath = sourceSets.test.runtimeClasspath
+    classpath = sourceSets.main.runtimeClasspath
     main = "org.example.RadUi"
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(22)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }

@@ -1,6 +1,6 @@
 package org.example;
-
 import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.v128.filesystem.model.File;
@@ -33,17 +33,25 @@ public class Radios {
 
     void skipYt() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Wartezeit bis zu 20 Sekunden
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dialog ytd-button-renderer [aria-label='Accept the use of cookies and other data for the purposes described']")));
-        element.click();
+        try {
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Reject all']/ancestor::div[@class='yt-spec-button-shape-next__button-text-content']")));
+            element.click();
         //driver.findElement(By.xpath("//button[contains(@class, 'yt-spec-button-shape-next') and contains(@class, 'yt-spec-button-shape-next--filled')]")).click();
         //System.out.println("skipping");
         //wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.id("iframe")));
         //
         //reject_button.click();
-        WebElement skipAdButton = wait
-                .until(ExpectedConditions.elementToBeClickable(By.className("ytp-ad-skip-button")));
-        skipAdButton.click();
-        System.out.println("Werbung übersprungen.");
+        } catch (Exception e) {
+            System.out.print("kein  reject btn");
+        }
+        try {
+            WebElement skipAdButton = wait
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'yt-spec-button-shape-next__button-text-content')]")));
+            skipAdButton.click();
+            System.out.println("Werbung übersprungen.");
+        } catch (Exception e) {
+            System.out.print("2kein Reject btn2");
+        }
     }
 
     void play() throws InterruptedException {
@@ -81,7 +89,7 @@ public class Radios {
             case "c-RED":
                 
                 driver.get("https://www.youtube.com/watch?v=QGRbjj5fS2Q");
-                driver.manage().addCookie(ytCookie);
+                //driver.manage().addCookie(ytCookie);
                 skipYt();
         }
 
@@ -103,11 +111,12 @@ public class Radios {
         this.url = url;
     }
 
-    Cookie ytCookie = new Cookie.Builder("YSC", "abcd1234efgh5678ijkl")
+    /*Cookie ytCookie = new Cookie.Builder("YSC", "abcd1234efgh5678ijkl")
         .domain(".youtube.com")    // Optional, falls du die Domain angeben möchtest
         .path("/")                 // Der Pfad, auf dem das Cookie gültig ist
         .isSecure(true)            // Wird nur über HTTPS gesendet
         .isHttpOnly(false)         // Nicht nur für HTTP-Anfragen
         .sameSite("Lax")           // SameSite-Attribut (Lax, Strict, None)
         .build();
+    */
 }

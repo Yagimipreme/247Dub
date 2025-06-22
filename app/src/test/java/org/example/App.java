@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class App {
-    public static String main(String[] args) {
+    public static void main(String[] args) {
  
         //Set path for chrome-driver
         System.setProperty("webdriver.chrome.driver", "chromedriver_linux64/chromedriver");

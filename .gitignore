@@ -1,5 +1,8 @@
 # Ignore Gradle project-specific cache directory
-.gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
 
 # Ignore Gradle build output directory
 build
@@ -14,3 +17,8 @@ app/src/*.crx
 /app/libs/
 app/src/EPCNNFBJFCGPHGDMGGKAMKMGOJDAGDNN_25_2_0_0.crx
 app/chrome-linux64/
+.vscode/
+.vscode
+.history/
+*.code-workspace
+*.log
