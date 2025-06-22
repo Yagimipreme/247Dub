@@ -2,7 +2,7 @@
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
-
+gitssh
 
 # Ignore Gradle build output directory
 build
@@ -22,3 +22,5 @@ app/chrome-linux64/
 .history/
 *.code-workspace
 *.log
+app/src/EPCNNFBJFCGPHGDMGGKAMKMGOJDAGDNN_25_2_0_0.crx
+app/chrome-linux64/chrome
